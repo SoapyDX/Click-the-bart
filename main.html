@@ -1,6 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>click the bart</title>
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('font.otf') format('opentype');
+        }
+        body {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'CustomFont', Arial, sans-serif;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        img {
+            cursor: pointer;
+            max-width: 100%;
+            height: auto;
+        }
+        .input-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: none; /* Hidden by default */
+        }
+        input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+            font-family: 'CustomFont', Arial, sans-serif;
+        }
+        .red-image {
+            position: relative;
+        }
+        .red-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(55, 0, 255, 0.534); /* Red color */
+            mix-blend-mode: color; /* Apply the color blend mode */
+            pointer-events: none; /* Ensure the overlay doesn't interfere with clicks */
+            z-index: 1;
+        }
+        .red-image img {
+            position: relative;
+            z-index: 0; /* Ensure the image is below the overlay */
+        }
+    </style>
     <script>
         (function() {
             function disableConsoleAccess() {
@@ -22,60 +80,20 @@
                     }
                 });
             }
-    
+
             disableConsoleAccess();
         })();
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>click the bart</title>
-    <style>
-        @font-face {
-            font-family: 'CustomFont';
-            src: url('font.otf') format('opentype');
-        }
-        body {
-            background-color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'CustomFont', Arial, sans-serif;
-            position: relative;
-        }
-        .container {
-            text-align: center;
-        }
-        img {
-            cursor: pointer;
-            max-width: 100%;
-            height: auto;
-        }
-        .input-container {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            display: none; /* Hidden by default */
-        }
-        input[type="text"] {
-            padding: 5px;
-            font-size: 16px;
-            font-family: 'CustomFont', Arial, sans-serif;
-        }
-    </style>
 </head>
 <body>
     <div class="input-container" id="inputContainer">
         <input type="text" id="textInput" placeholder="INSERT CODE HERE">
     </div>
     <div class="container">
-        <audio autoplay loop>
-            <source src="bartambience.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
         <a href="bart.html" id="bartLink">
-            <img src="bart.png" alt="Clickable Image">
+            <div class="red-image">
+                <img src="bart.png" alt="Clickable Image" id="bartImage">
+            </div>
         </a>
     </div>
     <script>
@@ -98,12 +116,20 @@
         });
 
         // Check if bart.html has been visited
+        const bartLink = document.getElementById('bartLink');
         if (localStorage.getItem('visitedBart')) {
+            bartLink.href = 'goodbye.html'; // Change this to the different site
+            const audio = new Audio('bartambience.mp3');
+            audio.volume = 0.2; // Set volume to a quieter level
+            audio.autoplay = true;
+            audio.loop = true;
+            document.body.appendChild(audio);
             document.getElementById('inputContainer').style.display = 'block';
+            document.querySelector('.red-image').classList.add('red-image'); // Add the red image class
         }
 
         // Set flag when visiting bart.html
-        document.getElementById('bartLink').addEventListener('click', function() {
+        bartLink.addEventListener('click', function() {
             localStorage.setItem('visitedBart', 'true');
         });
     </script>

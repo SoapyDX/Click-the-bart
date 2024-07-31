@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>'</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: background-color 0.1s; /* Smooth background color transition */
+        }
+        #content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        #screamImage {
+            width: 10vw; /* Start with a small size */
+            height: auto;
+            opacity: 0; /* Start with the image hidden */
+            transition: opacity 2s ease, width 0s; /* Smooth fade-in, instant size change */
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <img id="screamImage" src="iseeyoubart.png" alt="Screamer Image">
+        <audio id="screamAudio" src="jumpscare.mp3" preload="auto"></audio>
+    </div>
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        setTimeout(() => {
+            const content = document.getElementById('content');
+            const screamImage = document.getElementById('screamImage');
+            const body = document.body;
+            content.style.display = 'flex';
+            screamImage.style.opacity = 1; // Fade in the image
+
+            // After the fade-in is done, instantly enlarge the image
+            setTimeout(() => {
+                screamImage.style.width = '50vw'; // Instant size change
+                document.getElementById('screamAudio').play(); // Play the sound
+
+                // Start flashing the background colors
+                const colorInterval = setInterval(() => {
+                    body.style.backgroundColor = getRandomColor();
+                }, 0.05); // Change background color every 100 milliseconds
+
+                // Stop flashing and redirect after 1 second
+                setTimeout(() => {
+                    clearInterval(colorInterval);
+                    window.location.href = 'main.html'; // Redirect after flashing
+                }, 400); // Adjust the duration of flashing if needed
+
+            }, 500); // Wait for the fade-in to complete
+        }, 3000); // Initial delay before showing the content
+    </script>
+</body>
+</html>
