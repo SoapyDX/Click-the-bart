@@ -58,17 +58,7 @@
         }
 
         window.onload = function() {
-            const hasVisited = localStorage.getItem('hasVisited');
-            if (hasVisited) {
-                // Remove old overlay immediately if site has been visited before
-                document.getElementById('overlay').style.display = 'none';
-            } else {
-                // Set flag and apply fade-out effect if site has not been visited
-                localStorage.setItem('hasVisited', 'true');
-                fadeOutOldOverlay();
-            }
-
-            // Set click event for the door
+            fadeOutOldOverlay();
             document.getElementById('door').addEventListener('click', handleDoorClick);
         };
     </script>

@@ -43,7 +43,7 @@
         }
         .fade-in {
             opacity: 0;
-            animation: fadeIn 100s forwards; /* Adjust this duration based on your audio length */
+            animation: fadeIn 100s forwards; /* Adjust duration based on your audio length */
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -66,6 +66,15 @@
             font-size: 3em;
             text-align: center;
         }
+        #bart {
+            position: absolute;
+            bottom: 10%;
+            right: 10%;
+            font-size: 1.5em;
+            color: white;
+            opacity: 0;
+            transition: opacity 5s; /* Adjust the duration here */
+        }
     </style>
 </head>
 <body>
@@ -74,15 +83,25 @@
         Your browser does not support the audio element.
     </audio>
     <img id="image" class="fade-in" src="iseeyoubart.png" alt="Background Image">
-    <div id="text" class="fade-in">BART</div>
+    <div id="text" class="fade-in">...</div>
+    <div id="bart">BART</div>
 
     <script>
         const audio = document.getElementById('audio');
+        const bart = document.getElementById('bart');
+        
         audio.addEventListener('canplaythrough', () => {
-            // Time before redirecting to main.html (after fade-in complete)
+            const fadeInDuration = 5; // Duration for "BART" fade-in in seconds
+            
+            // Start fading in the "BART" text after the audio has ended
+            setTimeout(() => {
+                bart.style.opacity = 1;
+            }, audio.duration * 1000);
+            
+            // Redirect after the audio ends and the "BART" text has fully faded in
             setTimeout(() => {
                 window.location.href = 'main.html';
-            }, audio.duration * 1000); // Duration of the audio in milliseconds
+            }, audio.duration * 1000 + fadeInDuration * 1000);
         });
     </script>
 </body>
