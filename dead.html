@@ -2,26 +2,59 @@
 <html lang="en">
 <head>
     <script>
+        (function() {
+            function disableConsoleAccess() {
+                document.addEventListener('keydown', function(event) {
+                    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.keyCode === 73) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        alert('fuck you.');
+                    }
+                }, true);
+                
+                document.addEventListener('contextmenu', function(event) {
+                    event.preventDefault();
+                }, true);
+                
+                Object.defineProperty(window, 'console', {
+                    get: function() {
+                        throw new Error('Console access is disabled.');
+                    }
+                });
+            }
+    
+            disableConsoleAccess();
+        })();
+
+        // Function to handle door click
         function handleDoorClick() {
+            // Play the sound
             const sound = new Audio('doorsfx.mp3');
             sound.play();
+
+            // Change the title
             document.title = "Entering door...";
+
+            // Show and fade in the new black screen
             const blackScreen = document.getElementById('black-screen');
             blackScreen.style.display = 'block';
             blackScreen.style.transition = 'opacity 3s';
             blackScreen.style.opacity = '1';
+
+            // Redirect after the sound is done playing
             sound.onended = function() {
                 window.location.href = 'code2.html';
             };
         }
 
+        // Fade out the old overlay
         function fadeOutOldOverlay() {
             const overlay = document.getElementById('overlay');
-            overlay.style.transition = 'opacity 3s';
+            overlay.style.transition = 'opacity 3s';  // Change to 3 seconds for longer fade-out
             overlay.style.opacity = '0';
             setTimeout(function() {
                 overlay.style.display = 'none';
-            }, 3000);
+            }, 3000); // Match the fade-out duration
         }
 
         window.onload = function() {
@@ -63,9 +96,9 @@
             width: 100%;
             height: 100%;
             background-color: black;
-            opacity: 0;
-            display: none;
-            z-index: 10000;
+            opacity: 0; /* Initially hidden */
+            display: none; /* Hide initially */
+            z-index: 10000; /* Make sure it's on top */
         }
         #main-image {
             position: absolute;
@@ -75,13 +108,17 @@
             width: 500px;
             height: auto;
         }
-        #door {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            cursor: pointer;
-        }
+#door {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    top: 330px;
+            left: 1600px;
+            width: 300px;
+    transform: translateX(-50%);
+    height: auto;
+    cursor: pointer;
+}
+
     </style>
 </head>
 <body>
