@@ -36,7 +36,7 @@
 </head>
 <body>
     <div class="input-container">
-        <input type="text" id="textInput" placeholder="Type here...">
+        <input type="text" id="textInput" placeholder="INSERT CODE HERE">
     </div>
     <div class="container">
         <audio autoplay loop>
@@ -48,10 +48,22 @@
         </a>
     </div>
     <script>
+        const sounds = [
+            new Audio('keyboard1.mp3'),
+            new Audio('keyboard2.mp3'),
+            new Audio('keyboard3.mp3'),
+            new Audio('keyboard4.mp3')
+        ];
+
         document.getElementById('textInput').addEventListener('input', function() {
             if (this.value.toUpperCase() === 'BART') {
                 window.location.href = 'https://www.roblox.com';
             }
+        });
+
+        document.addEventListener('keydown', function() {
+            const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+            randomSound.play();
         });
     </script>
 </body>
