@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('livingroom.png'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #main-image {
+            position: absolute;
+        }
+        #door {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img id="main-image" src="deadhomer.png" alt="Main Image">
+    <a href="code2.html">
+        <img id="door" src="door.png" alt="Door Image">
+    </a>
+    <audio autoplay loop>
+        <source src="homer.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</body>
+</html>
