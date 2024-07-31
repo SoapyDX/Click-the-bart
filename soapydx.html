@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        (function() {
+            function disableConsoleAccess() {
+                document.addEventListener('keydown', function(event) {
+                    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.keyCode === 73) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        alert('fuck you.');
+                    }
+                }, true);
+                
+                document.addEventListener('contextmenu', function(event) {
+                    event.preventDefault();
+                }, true);
+                
+                Object.defineProperty(window, 'console', {
+                    get: function() {
+                        throw new Error('Console access is disabled.');
+                    }
+                });
+            }
+    
+            disableConsoleAccess();
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>horse</title>
+    <style>
+        body {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden; /* Prevents scrollbars from appearing during animation */
+        }
+        img {
+            cursor: pointer;
+            max-width: 100%;
+            height: auto;
+            animation: bounce 2s infinite; /* Bounce animation */
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+        .flashing {
+            animation: flash 1s infinite; /* Flashing background animation */
+        }
+        @keyframes flash {
+            0% { background-color: red; }
+            25% { background-color: green; }
+            50% { background-color: blue; }
+            75% { background-color: yellow; }
+            100% { background-color: red; }
+        }
+    </style>
+</head>
+<body>
+    <a href="main.html" id="imageLink">
+        <img src="me.png" alt="Clickable Image">
+    </a>
+    <audio id="clickSound" src="horse.mp3"></audio>
+    <script>
+        // Set a delay time (e.g., 6 seconds)
+        const delayTime = 8000; // in milliseconds
+
+        setTimeout(() => {
+            // Add flashing class to body
+            document.body.classList.add('flashing');
+        }, delayTime);
+
+        // Optional: Play a sound after the delay
+        const chance = 0.3;
+        setTimeout(() => {
+            if (Math.random() < chance) {
+                const sound = document.getElementById('clickSound');
+                sound.play();
+            }
+        }, delayTime);
+    </script>
+    <audio autoplay loop>
+        <source src="remedy.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</body>
+</html>
