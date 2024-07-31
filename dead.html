@@ -25,6 +25,30 @@
     
             disableConsoleAccess();
         })();
+
+        // Function to fade out the black screen
+        function fadeOutBlackScreen() {
+            setTimeout(function() {
+                const overlay = document.getElementById('overlay');
+                overlay.style.transition = 'opacity 3s';  // Change to 3 seconds for longer fade-out
+                overlay.style.opacity = '0';
+                setTimeout(function() {
+                    overlay.style.display = 'none';
+                }, 3000); // Match the fade-out duration
+            }, 7000); // Delay before fading out
+        }
+
+        window.onload = function() {
+            const hasVisited = localStorage.getItem('hasVisited');
+            if (hasVisited) {
+                // Remove overlay immediately if site has been visited before
+                document.getElementById('overlay').style.display = 'none';
+            } else {
+                // Set flag and apply fade-out effect if site has not been visited
+                localStorage.setItem('hasVisited', 'true');
+                fadeOutBlackScreen();
+            }
+        };
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,6 +65,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+        }
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 1;
+            z-index: 9999;
         }
         img:not(#main-image) {
             position: absolute;
@@ -67,6 +102,7 @@
     </style>
 </head>
 <body>
+    <div id="overlay"></div>
     <img id="main-image" src="deadhomer.png" alt="Main Image">
     <a href="code2.html">
         <img id="door" src="door.png" alt="Door Image">
