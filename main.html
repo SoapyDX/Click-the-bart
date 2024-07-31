@@ -86,26 +86,41 @@
             <img src="bart.png" alt="Clickable Image">
         </a>
     </div>
-    <button class="delete-button" onclick="deleteSiteData()">Delete Save Data</button>
     <script>
+        function exitFullscreen() {
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(err => console.error(err));
+            } else if (document.webkitFullscreenElement) { // Safari
+                document.webkitExitFullscreen().catch(err => console.error(err));
+            } else if (document.mozFullScreenElement) { // Firefox
+                document.mozCancelFullScreen().catch(err => console.error(err));
+            } else if (document.msFullscreenElement) { // IE/Edge
+                document.msExitFullscreen().catch(err => console.error(err));
+            }
+        }
+    
+        // Call exitFullscreen when the page loads
+        window.addEventListener('load', exitFullscreen);
+    
+        // Existing script code...
         const sounds = [
             new Audio('keyboard1.mp3'),
             new Audio('keyboard2.mp3'),
             new Audio('keyboard3.mp3'),
             new Audio('keyboard4.mp3')
         ];
-
+    
         document.getElementById('textInput').addEventListener('input', function() {
             if (this.value.toUpperCase() === 'HOMER') {
                 window.location.href = 'dead.html';
             }
         });
-
+    
         document.addEventListener('keydown', function() {
             const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
             randomSound.play();
         });
-
+    
         // Check if bart.html has been visited
         if (localStorage.getItem('visitedBart')) {
             const audio = new Audio('bartambience.mp3');
@@ -118,17 +133,18 @@
             // Change href to goodbye.html
             document.getElementById('bartLink').href = 'goodbye.html';
         }
-
+    
         // Set flag when visiting bart.html
         document.getElementById('bartLink').addEventListener('click', function() {
             localStorage.setItem('visitedBart', 'true');
         });
-
+    
         function deleteSiteData() {
             localStorage.clear();
             sessionStorage.clear();
             window.location.href = 'index.html';
         }
     </script>
+    
 </body>
 </html>

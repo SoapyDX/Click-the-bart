@@ -26,8 +26,16 @@
             disableConsoleAccess();
         })();
 
+        let backgroundAudio;
+
         // Function to handle door click
-        function handleDoorClick() {
+        function handleDoorClick(url) {
+            // Stop the background audio
+            if (backgroundAudio) {
+                backgroundAudio.pause();
+                backgroundAudio.currentTime = 0; // Reset playback to the beginning
+            }
+
             // Play the sound
             const sound = new Audio('doorsfx.mp3');
             sound.play();
@@ -43,7 +51,7 @@
 
             // Redirect after the sound is done playing
             sound.onended = function() {
-                window.location.href = 'chooseone.html';
+                window.location.href = url;
             };
         }
 
@@ -58,18 +66,22 @@
         }
 
         window.onload = function() {
+            // Store reference to the background audio
+            backgroundAudio = document.querySelector('audio');
+
             fadeOutOldOverlay();
-            document.getElementById('door').addEventListener('click', handleDoorClick);
+            document.getElementById('door1').addEventListener('click', function() { handleDoorClick('bartwiki.html'); });
+            document.getElementById('door2').addEventListener('click', function() { handleDoorClick('goodbye.html'); });
         };
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>he's gone because of you</title>
+    <title>choose</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-image: url('livingroom.png');
+            background-color: black;
             background-size: cover;
             background-position: center;
             text-align: center;
@@ -100,6 +112,23 @@
             display: none; /* Hide initially */
             z-index: 10000; /* Make sure it's on top */
         }
+        #shaking-text {
+            position: absolute;
+            top: 10%;
+            left: 48%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            animation: shake 0.2s infinite;
+        }
+        @keyframes shake {
+            0% { transform: translate(-50%, -50%) translateX(-2px); }
+            25% { transform: translate(-50%, -50%) translateX(2px); }
+            50% { transform: translate(-50%, -50%) translateX(-2px); }
+            75% { transform: translate(-50%, -50%) translateX(2px); }
+            100% { transform: translate(-50%, -50%) translateX(-2px); }
+        }
         #main-image {
             position: absolute;
             top: 75%;
@@ -108,26 +137,30 @@
             width: 500px;
             height: auto;
         }
-#door {
-    position: absolute;
-    bottom: 20px; /* Adjust as needed */
-    top: 330px;
-            left: 1600px;
+        #door1, #door2 {
+            position: absolute;
+            bottom: 150px; /* Adjust as needed */
             width: 300px;
-    transform: translateX(-50%);
-    height: auto;
-    cursor: pointer;
-}
-
+            transform: translateX(-10%);
+            height: auto;
+            cursor: pointer;
+        }
+        #door1 {
+            left: 25%; /* Adjust as needed */
+        }
+        #door2 {
+            right: 25%; /* Adjust as needed */
+        }
     </style>
 </head>
 <body>
     <div id="overlay"></div>
     <div id="black-screen"></div>
-    <img id="main-image" src="deadhomer.png" alt="Main Image">
-    <img id="door" src="door.png" alt="Door Image">
+    <div id="shaking-text">CHOOSE THE RIGHT ONE.</div>
+    <img id="door1" src="door.png" alt="Door Image">
+    <img id="door2" src="door.png" alt="Door Image">
     <audio autoplay loop>
-        <source src="homer.mp3" type="audio/mpeg">
+        <source src="choose.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 </body>

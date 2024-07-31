@@ -1,31 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-        (function() {
-            function disableConsoleAccess() {
-                document.addEventListener('keydown', function(event) {
-                    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.keyCode === 73) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        alert('fuck you.');
-                    }
-                }, true);
-                
-                document.addEventListener('contextmenu', function(event) {
-                    event.preventDefault();
-                }, true);
-                
-                Object.defineProperty(window, 'console', {
-                    get: function() {
-                        throw new Error('Console access is disabled.');
-                    }
-                });
-            }
-    
-            disableConsoleAccess();
-        })();
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>'</title>
@@ -59,6 +34,18 @@
         <audio id="screamAudio" src="jumpscare.mp3" preload="auto"></audio>
     </div>
     <script>
+        function enterFullscreen() {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+        }
+
         function getRandomColor() {
             const letters = '0123456789ABCDEF';
             let color = '#';
@@ -69,6 +56,8 @@
         }
 
         setTimeout(() => {
+            enterFullscreen(); // Make the page fullscreen
+
             const content = document.getElementById('content');
             const screamImage = document.getElementById('screamImage');
             const body = document.body;
@@ -83,7 +72,7 @@
                 // Start flashing the background colors
                 const colorInterval = setInterval(() => {
                     body.style.backgroundColor = getRandomColor();
-                }, 0.05); // Change background color every 100 milliseconds
+                }, 50); // Change background color every 50 milliseconds
 
                 // Stop flashing and redirect after 1 second
                 setTimeout(() => {
