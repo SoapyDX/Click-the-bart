@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        (function() {
+            function disableConsoleAccess() {
+                document.addEventListener('keydown', function(event) {
+                    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.keyCode === 73) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        alert('fuck you.');
+                    }
+                }, true);
+                
+                document.addEventListener('contextmenu', function(event) {
+                    event.preventDefault();
+                }, true);
+                
+                Object.defineProperty(window, 'console', {
+                    get: function() {
+                        throw new Error('Console access is disabled.');
+                    }
+                });
+            }
+    
+            disableConsoleAccess();
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New chapter</title>
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('font.otf') format('opentype');
+        }
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'CustomFont', Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            transition: opacity 2s ease-out;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>You decided to get rid of you're save.</h1>
+        <button onclick="proceed()">Click here to go back</button>
+    </div>
+    <audio id="warningSound" src="bartmanknowsall.wav" preload="auto"></audio>
+    <script>
+        // Check if the user has visited before
+        if (localStorage.getItem('visited')) {
+            window.location.href = 'main.html';
+        }
+
+        function proceed() {
+            const container = document.querySelector('.container');
+            const sound = document.getElementById('warningSound');
+            sound.play();
+            container.style.opacity = '0';
+            setTimeout(() => {
+                // Mark that the user has visited
+                localStorage.setItem('visited', 'true');
+                window.location.href = "main.html";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
