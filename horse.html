@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>horse</title>
+    <style>
+        body {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        img {
+            cursor: pointer;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="main.html" id="imageLink">
+        <img src="horse.jpg" alt="Clickable Image">
+    </a>
+    <audio id="clickSound" src="horse.mp3"></audio>
+    <script>
+        // Set a delay time (e.g., 10 seconds)
+        const delayTime = 10000; // in milliseconds
+        // Set a probability threshold (e.g., 0.1 for 10% chance)
+        const chance = 0.3;
+
+        setTimeout(() => {
+            if (Math.random() < chance) {
+                const sound = document.getElementById('clickSound');
+                sound.play();
+            }
+        }, delayTime);
+    </script>
+</body>
+</html>

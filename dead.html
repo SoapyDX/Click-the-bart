@@ -26,7 +26,7 @@
             disableConsoleAccess();
         })();
 
-        // Function to play sound and redirect to new page
+        // Function to handle door click
         function handleDoorClick() {
             // Play the sound
             const sound = new Audio('doorsfx.mp3');
@@ -35,10 +35,11 @@
             // Change the title
             document.title = "Entering door...";
 
-            // Make the screen black
-            const overlay = document.getElementById('overlay');
-            overlay.style.transition = 'opacity 3s';
-            overlay.style.opacity = '1';
+            // Show and fade in the new black screen
+            const blackScreen = document.getElementById('black-screen');
+            blackScreen.style.display = 'block';
+            blackScreen.style.transition = 'opacity 3s';
+            blackScreen.style.opacity = '1';
 
             // Redirect after the sound is done playing
             sound.onended = function() {
@@ -46,27 +47,25 @@
             };
         }
 
-        // Fade out the black screen
-        function fadeOutBlackScreen() {
+        // Fade out the old overlay
+        function fadeOutOldOverlay() {
+            const overlay = document.getElementById('overlay');
+            overlay.style.transition = 'opacity 3s';  // Change to 3 seconds for longer fade-out
+            overlay.style.opacity = '0';
             setTimeout(function() {
-                const overlay = document.getElementById('overlay');
-                overlay.style.transition = 'opacity 3s';  // Change to 3 seconds for longer fade-out
-                overlay.style.opacity = '0';
-                setTimeout(function() {
-                    overlay.style.display = 'none';
-                }, 3000); // Match the fade-out duration
-            }, 7000); // Delay before fading out
+                overlay.style.display = 'none';
+            }, 3000); // Match the fade-out duration
         }
 
         window.onload = function() {
             const hasVisited = localStorage.getItem('hasVisited');
             if (hasVisited) {
-                // Remove overlay immediately if site has been visited before
+                // Remove old overlay immediately if site has been visited before
                 document.getElementById('overlay').style.display = 'none';
             } else {
                 // Set flag and apply fade-out effect if site has not been visited
                 localStorage.setItem('hasVisited', 'true');
-                fadeOutBlackScreen();
+                fadeOutOldOverlay();
             }
 
             // Set click event for the door
@@ -100,6 +99,17 @@
             opacity: 1;
             z-index: 9999;
         }
+        #black-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0; /* Initially hidden */
+            display: none; /* Hide initially */
+            z-index: 10000; /* Make sure it's on top */
+        }
         img:not(#main-image) {
             position: absolute;
             top: 330px;
@@ -126,6 +136,7 @@
 </head>
 <body>
     <div id="overlay"></div>
+    <div id="black-screen"></div>
     <img id="main-image" src="deadhomer.png" alt="Main Image">
     <img id="door" src="door.png" alt="Door Image">
     <audio autoplay loop>
