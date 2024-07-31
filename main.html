@@ -8,7 +8,7 @@
                     if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.keyCode === 73) {
                         event.preventDefault();
                         event.stopPropagation();
-                        alert('fuck you.');
+                        alert('Access denied.');
                     }
                 }, true);
                 
@@ -114,15 +114,26 @@
             audio.loop = true;
             document.body.appendChild(audio);
             document.getElementById('inputContainer').style.display = 'block';
-            
-            // Change href to goodbye.html
-            document.getElementById('bartLink').href = 'goodbye.html';
+
+            // Check if goodbye.html has been visited
+            if (localStorage.getItem('visitedGoodbye')) {
+                // Disable click on Bart
+                document.getElementById('bartLink').style.pointerEvents = 'none';
+                document.getElementById('bartLink').style.opacity = '0.5'; // Optional: Make it look disabled
+            } else {
+                // Change href to goodbye.html
+                document.getElementById('bartLink').href = 'goodbye.html';
+            }
         }
 
-        // Set flag when visiting bart.html
+        // Set flags when visiting bart.html or goodbye.html
         document.getElementById('bartLink').addEventListener('click', function() {
             localStorage.setItem('visitedBart', 'true');
         });
+
+        if (window.location.pathname === '/goodbye.html') {
+            localStorage.setItem('visitedGoodbye', 'true');
+        }
 
         function deleteSiteData() {
             localStorage.clear();
