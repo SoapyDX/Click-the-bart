@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Page</title>
+    <title>he's gone because of you</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-image: url('livingroom.png'); /* Background image */
+            background-image: url('livingroom.png');
             background-size: cover;
             background-position: center;
             text-align: center;
@@ -17,13 +17,25 @@
             justify-content: center;
             align-items: center;
         }
+        img:not(#main-image) {
+            position: absolute;
+            top: 330px;
+            left: 1690px;
+            width: 300px;
+            height: auto;
+            cursor: pointer;
+        }
         #main-image {
             position: absolute;
+            top: 75%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: auto;
         }
         #door {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
+            bottom: 5000px;
+            left: 500%;
             transform: translateX(-50%);
             cursor: pointer;
         }
