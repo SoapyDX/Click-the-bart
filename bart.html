@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i see you</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+            font-family: 'CustomFont', sans-serif;
+        }
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('font.otf') format('opentype');
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 5s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        #text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay>
+        <source src="sayhello.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <img id="image" class="fade-in" src="bart.png" alt="Background Image">
+    <div id="text" class="fade-in">BART</div>
+
+    <script>
+        // Time before redirecting to main.html (after fade-in complete)
+        setTimeout(() => {
+            window.location.href = 'main.html';
+        }, 10000); // Adjust this to match the total duration of the fade-in effects
+    </script>
+</body>
+</html>
