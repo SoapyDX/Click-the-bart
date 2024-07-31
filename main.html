@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warning Page</title>
+    <title>click the bart</title>
     <style>
         body {
             background-color: white;
@@ -16,23 +16,20 @@
         .container {
             text-align: center;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
+        img {
             cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Autoplay Warning</h1>
-        <p>You must have autoplay enabled before entering. Do you want to proceed?</p>
-        <button onclick="proceed()">Proceed</button>
+        <audio autoplay loop>
+            <source src="bartambience.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <a href="https://www.youtube.com">
+            <img src="bart.png" alt="Clickable Image">
+        </a>
     </div>
-    <script>
-        function proceed() {
-            window.location.href = "main.html";
-        }
-    </script>
 </body>
 </html>
