@@ -118,8 +118,7 @@
             // Check if goodbye.html has been visited
             if (localStorage.getItem('visitedGoodbye')) {
                 // Disable click on Bart
-                document.getElementById('bartLink').style.pointerEvents = 'none';
-                document.getElementById('bartLink').style.opacity = '0.5'; // Optional: Make it look disabled
+                document.getElementById('bartLink').href = 'main.html';
             } else {
                 // Change href to goodbye.html
                 document.getElementById('bartLink').href = 'goodbye.html';
