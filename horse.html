@@ -39,22 +39,50 @@
             align-items: center;
             height: 100vh;
             text-align: center;
+            overflow: hidden;
         }
-        img {
-            cursor: pointer;
-            max-width: 100%;
-            height: auto;
+        #horse {
+            position: absolute;
+            left: 600px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: left 1s linear, transform 0.5s linear;
         }
     </style>
 </head>
 <body>
     <a href="main.html" id="imageLink">
-        <img src="horse.jpg" alt="Clickable Image">
+        <img src="horse.jpg" alt="horse.png" id="horse">
     </a>
     <audio id="clickSound" src="horse.mp3"></audio>
     <script>
         const delayTime = 10000;
         const chance = 0.3;
+        const horse = document.getElementById('horse');
+        let speed = 5;
+        let flipped = false;
+
+        function moveHorse() {
+            let leftPos = 200;
+
+            setInterval(() => {
+                leftPos += window.innerWidth;
+                horse.style.left = leftPos + 'px';
+                speed -= 0.1;
+                if (speed < 1) speed = 1;
+                horse.style.transitionDuration = speed + 's';
+
+                if (leftPos >= window.innerWidth) {
+                    leftPos = -3000;
+                    flipped = true;
+                } else if (leftPos < window.innerWidth) {
+                    flipped = false;
+                }
+                horse.style.transform = `translateY(-50%) scaleX(${flipped ? -1 : 1})`;
+            }, speed * 1000);
+        }
+
+        moveHorse();
 
         setTimeout(() => {
             if (Math.random() < chance) {
