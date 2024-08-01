@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Max Info</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevent scrolling */
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0f0300, #000); /* Gradient from normal color to black */
+    }
+    .wrapper {
+      display: flex;
+      height: 100%;
+    }
+    .sidebar {
+      width: 300px;
+      background: linear-gradient(to bottom, #220400, #000); /* Gradient from normal color to black */
+      border-right: 1px solid #333;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 0;
+      height: 100%;
+      overflow-y: auto; /* Enable scrolling within the sidebar */
+    }
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto; /* Enable scrolling within the main content */
+      background: linear-gradient(to bottom, #330600, #000); /* Gradient from normal color to black */
+      color: #ccc; /* Lighter main content text color for contrast */
+      position: relative; /* To position the button relative to the content */
+    }
+    .infobox {
+      width: 100%;
+      background: linear-gradient(to bottom, #7a0000, #000); /* Gradient from normal color to black */
+      border: 1px solid #333;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      margin-bottom: 20px;
+      color: #ccc; /* Lighter infobox text color for contrast */
+    }
+    .infobox-title {
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      background: linear-gradient(to bottom, #b30000, #000); /* Gradient from normal color to black */
+      color: white;
+      padding: 10px 0;
+      margin-bottom: 10px;
+    }
+    .infobox-image {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .infobox-image img {
+      max-width: 100%;
+      height: auto;
+    }
+    .infobox-caption {
+      text-align: center;
+      font-size: 0.9em;
+      color: #bbb; /* Darker infobox caption color */
+      margin-bottom: 10px;
+    }
+    .infobox-group {
+      margin-bottom: 10px;
+    }
+    .infobox-group header {
+      font-weight: bold;
+      background: linear-gradient(to bottom, #220400, #000); /* Gradient from normal color to black */
+      padding: 5px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 5px;
+    }
+    .infobox-data {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px;
+      border-bottom: 1px solid #444;
+    }
+    .infobox-data:last-child {
+      border-bottom: none;
+    }
+    .infobox-data label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .infobox-data span {
+      flex: 1;
+      text-align: right;
+    }
+    .main-content h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #fff; /* Lighter main content header color */
+    }
+    .main-content p {
+      margin-bottom: 10px;
+      color: #ccc; /* Lighter main content paragraph color */
+    }
+    .back-button {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(to bottom, #b30000, #000); /* Gradient from normal color to black */
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .back-button:hover {
+      background: linear-gradient(to bottom, #ff3333, #000); /* Gradient from lighter to black */
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <div class="infobox">
+        <div class="infobox-title">Max</div>
+        <div class="infobox-image">
+          <img src="Max%20Info_files/max.png" alt="Max The Monkey">
+          <div class="infobox-caption">only remaining picture of him</div>
+        </div>
+        <div class="infobox-group">
+          <header>Physical description</header>
+          <div class="infobox-data">
+            <label>Species:</label>
+            <span>Monkey</span>
+          </div>
+          <div class="infobox-data">
+            <label>Gender:</label>
+            <span>Male</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <h1>Max The Monkey</h1>
+      <p>Though <strong>Max the Monkey</strong> attempts excelled more than others, him nor his apprentice <a href="https://maxdesignprofilesdownload.neocities.org/NuggetInfo"><strong>Nugget</strong></a> have the capability to stop what happens to them.</p>
+      <h2 id="personality">Personality</h2>
+      <p>Cheerful and playful, Max often found himself in disturbing 
+predicaments due to his lack of intelligence. He is friendly and 
+well-meaning, but a terrible character due to his <strong>flaws</strong>.</p>
+      <h2>Death</h2>
+      <p>Max's death was caused by his low intelligence, he had been brutally killed and stretched by someone <strong>unknown</strong>.
+ He bled out on the floor before having his right arm and neck being 
+stretched out, his arm being dislocated. He was then dragged away by his
+ legs and thrown into a dumpster.</p>
+      <button class="back-button" onclick="window.location.href='https://maxdesignprofilesdownload.neocities.org/INFO'">Back to Info</button>
+    </div>
+  </div>
+
+
+</body></html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bart Wiki</title>
+<style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('font.otf') format('opentype');
+        }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    font-family: 'CustomFont', Arial, sans-serif; /* Use custom font */
+    background: linear-gradient(to bottom, #aa9f03, #000); /* Gradient from normal color to black */
+  }
+  .wrapper {
+    display: flex;
+    height: 100%;
+  }
+  .sidebar {
+    width: 300px;
+    background: linear-gradient(to bottom, #fffb00, #000); /* Gradient from normal color to black */
+    border-right: 1px solid #333333;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    height: 100%;
+    overflow-y: auto; /* Enable scrolling within the sidebar */
+  }
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto; /* Enable scrolling within the main content */
+    background: linear-gradient(to bottom, #323300, #000); /* Gradient from normal color to black */
+    color: #ccc; /* Lighter main content text color for contrast */
+    position: relative; /* To position the button relative to the content */
+  }
+  .infobox {
+    width: 100%;
+    background: linear-gradient(to bottom, #aabd03, #000); /* Gradient from normal color to black */
+    border: 1px solid #c7a200;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #ccc; /* Lighter infobox text color for contrast */
+  }
+  .infobox-title {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #ffd000, #000); /* Gradient from normal color to black */
+    color: white;
+    padding: 10px 0;
+    margin-bottom: 10px;
+  }
+  .infobox-image {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .infobox-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  .infobox-caption {
+    text-align: center;
+    font-size: 0.9em;
+    color: #bbb; /* Darker infobox caption color */
+    margin-bottom: 10px;
+  }
+  .infobox-group {
+    margin-bottom: 10px;
+  }
+  .infobox-group header {
+    font-weight: bold;
+    background: linear-gradient(to bottom, #cc8c01, #000); /* Gradient from normal color to black */
+    padding: 5px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 5px;
+    font-family: 'CustomFont', sans-serif;
+  }
+  .infobox-data {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px solid #444;
+  }
+  .infobox-data:last-child {
+    border-bottom: none;
+  }
+  .infobox-data label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-family: 'CustomFont', sans-serif;
+  }
+  .infobox-data span {
+    flex: 1;
+    text-align: right;
+  }
+  .main-content h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #fff; /* Lighter main content header color */
+    font-family: 'CustomFont', sans-serif;
+  }
+  .main-content p {
+    margin-bottom: 10px;
+    color: #ccc; /* Lighter main content paragraph color */
+  }
+  .back-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(to bottom, #ffe600, #000); /* Gradient from normal color to black */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: 'CustomFont', sans-serif;
+  }
+  .back-button:hover {
+    background: linear-gradient(to bottom, #ffea2b, #000); /* Gradient from lighter to black */
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="sidebar">
+    <div class="infobox">
+      <div class="infobox-title">Bart Simpson</div>
+      <div class="infobox-image">
+        <img src="deadbart.png" alt="Bart Simpson">
+        <div class="infobox-caption">Picture taken after his Death.</div>
+      </div>
+      <div class="infobox-group">
+        <header>Physical description</header>
+        <div class="infobox-data">
+          <label>Status:</label>
+          <span>Dead</span>
+        </div>
+        <div class="infobox-data">
+          <label>Gender:</label>
+          <span>Male</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-content">
+    <h1>Bart Simpson</h1>
+    <p>test <strong>bold text test</strong> <a href="https://soapydx.github.io/Click-the-bart/main.html"><strong>link text</strong></a> </p>
+    <h2 id="personality">Personality</h2>
+    <p>wip </p>
+    <h2>Death</h2>
+    <p>wip</p>
+    <button class="back-button" onclick="window.location.href='https://soapydx.github.io/Click-the-bart/bartwikiimages.html'">Back to Info</button>
+  </div>
+</div>
+</body>
+</html>
