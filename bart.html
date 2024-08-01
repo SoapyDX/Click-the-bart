@@ -43,7 +43,7 @@
         }
         .fade-in {
             opacity: 0;
-            animation: fadeIn 100s forwards; /* Adjust duration based on your audio length */
+            animation: fadeIn 100s forwards;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -73,7 +73,7 @@
             font-size: 1.5em;
             color: white;
             opacity: 0;
-            transition: opacity 5s; /* Adjust the duration here */
+            transition: opacity 5s;
         }
     </style>
 </head>
@@ -91,14 +91,13 @@
         const bart = document.getElementById('bart');
         
         audio.addEventListener('canplaythrough', () => {
-            const fadeInDuration = 5; // Duration for "BART" fade-in in seconds
+            const fadeInDuration = 5;
             
-            // Start fading in the "BART" text after the audio has ended
+            
             setTimeout(() => {
                 bart.style.opacity = 1;
             }, audio.duration * 1000);
             
-            // Redirect after the audio ends and the "BART" text has fully faded in
             setTimeout(() => {
                 window.location.href = 'main.html';
             }, audio.duration * 1000 + fadeInDuration * 1000);

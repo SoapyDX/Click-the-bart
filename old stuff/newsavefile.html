@@ -70,7 +70,6 @@
     </div>
     <audio id="warningSound" src="bartmanknowsall.wav" preload="auto"></audio>
     <script>
-        // Check if the user has visited before
         if (localStorage.getItem('visited')) {
             window.location.href = 'main.html';
         }
@@ -81,7 +80,6 @@
             sound.play();
             container.style.opacity = '0';
             setTimeout(() => {
-                // Mark that the user has visited
                 localStorage.setItem('visited', 'true');
                 window.location.href = "main.html";
             }, 2000);

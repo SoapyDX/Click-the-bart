@@ -28,50 +28,46 @@
 
         let backgroundAudio;
 
-        // Function to handle door click
-        function handleDoorClick(url) {
-            // Stop the background audio
+        function handleDoorClick() {
+            const urls = ['bartwiki.html', 'goodbye.html'];
+            const randomIndex = Math.floor(Math.random() * urls.length);
+            const url = urls[randomIndex];
+
             if (backgroundAudio) {
                 backgroundAudio.pause();
-                backgroundAudio.currentTime = 0; // Reset playback to the beginning
+                backgroundAudio.currentTime = 0;
             }
 
-            // Play the sound
             const sound = new Audio('doorsfx.mp3');
             sound.play();
 
-            // Change the title
             document.title = "Entering door...";
 
-            // Show and fade in the new black screen
             const blackScreen = document.getElementById('black-screen');
             blackScreen.style.display = 'block';
             blackScreen.style.transition = 'opacity 3s';
             blackScreen.style.opacity = '1';
 
-            // Redirect after the sound is done playing
             sound.onended = function() {
                 window.location.href = url;
             };
         }
 
-        // Fade out the old overlay
         function fadeOutOldOverlay() {
             const overlay = document.getElementById('overlay');
-            overlay.style.transition = 'opacity 3s';  // Change to 3 seconds for longer fade-out
+            overlay.style.transition = 'opacity 3s';
             overlay.style.opacity = '0';
             setTimeout(function() {
                 overlay.style.display = 'none';
-            }, 3000); // Match the fade-out duration
+            }, 3000);
         }
 
         window.onload = function() {
-            // Store reference to the background audio
             backgroundAudio = document.querySelector('audio');
 
             fadeOutOldOverlay();
-            document.getElementById('door1').addEventListener('click', function() { handleDoorClick('bartwiki.html'); });
-            document.getElementById('door2').addEventListener('click', function() { handleDoorClick('goodbye.html'); });
+            document.getElementById('door1').addEventListener('click', handleDoorClick);
+            document.getElementById('door2').addEventListener('click', handleDoorClick);
         };
     </script>
     <meta charset="UTF-8">
@@ -108,9 +104,9 @@
             width: 100%;
             height: 100%;
             background-color: black;
-            opacity: 0; /* Initially hidden */
-            display: none; /* Hide initially */
-            z-index: 10000; /* Make sure it's on top */
+            opacity: 0;
+            display: none;
+            z-index: 10000;
         }
         #shaking-text {
             position: absolute;
@@ -139,17 +135,17 @@
         }
         #door1, #door2 {
             position: absolute;
-            bottom: 150px; /* Adjust as needed */
+            bottom: 150px;
             width: 300px;
             transform: translateX(-10%);
             height: auto;
             cursor: pointer;
         }
         #door1 {
-            left: 25%; /* Adjust as needed */
+            left: 25%;
         }
         #door2 {
-            right: 25%; /* Adjust as needed */
+            right: 25%;
         }
     </style>
 </head>
