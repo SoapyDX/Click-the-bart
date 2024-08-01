@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            transition: background-color 0.1s; /* Smooth background color transition */
+            transition: background-color 0.1s;
         }
         #content {
             display: none;
@@ -21,10 +21,10 @@
             align-items: center;
         }
         #screamImage {
-            width: 10vw; /* Start with a small size */
+            width: 10vw;
             height: auto;
-            opacity: 0; /* Start with the image hidden */
-            transition: opacity 2s ease, width 0s; /* Smooth fade-in, instant size change */
+            opacity: 0; 
+            transition: opacity 2s ease, width 0s;
         }
     </style>
 </head>
@@ -56,32 +56,32 @@
         }
 
         setTimeout(() => {
-            enterFullscreen(); // Make the page fullscreen
+            enterFullscreen();
 
             const content = document.getElementById('content');
             const screamImage = document.getElementById('screamImage');
             const body = document.body;
             content.style.display = 'flex';
-            screamImage.style.opacity = 1; // Fade in the image
+            screamImage.style.opacity = 1;
 
-            // After the fade-in is done, instantly enlarge the image
+        e
             setTimeout(() => {
-                screamImage.style.width = '50vw'; // Instant size change
-                document.getElementById('screamAudio').play(); // Play the sound
+                screamImage.style.width = '50vw';
+                document.getElementById('screamAudio').play();
 
-                // Start flashing the background colors
+                
                 const colorInterval = setInterval(() => {
                     body.style.backgroundColor = getRandomColor();
-                }, 50); // Change background color every 50 milliseconds
+                }, 50);
 
-                // Stop flashing and redirect after 1 second
+                
                 setTimeout(() => {
                     clearInterval(colorInterval);
-                    window.location.href = 'main.html'; // Redirect after flashing
-                }, 400); // Adjust the duration of flashing if needed
+                    window.location.href = 'main.html';
+                }, 400);
 
-            }, 500); // Wait for the fade-in to complete
-        }, 3000); // Initial delay before showing the content
+            }, 500);
+        }, 3000);
     </script>
 </body>
 </html>
